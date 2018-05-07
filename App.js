@@ -6,13 +6,11 @@ import Contents from './src/Contents.js';
 import Footer from './src/Footer.js';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pageNum: 0,
-      visiableFooter: true
-    };
-  }
+  state = {
+    pageNum: 0,
+    scroll: false,
+    visiableFooter: true
+  };
   fn(e) {
     const _this = this;
     const tab = function(i) {
@@ -21,9 +19,19 @@ export default class App extends React.Component {
       })
     }
 
+    const scroll = function(i) {
+      _this.setState({
+        scroll: i
+      })
+    }
+
     switch(Object.keys(e)[0]) {
       case 'tab':
-        tab(e[Object.keys(e)[0]])
+        tab(e[Object.keys(e)[0]]);
+        break;
+      case 'scroll':
+        scroll(e[Object.keys(e)[0]]);
+        break;
     }
   }
   render() {
